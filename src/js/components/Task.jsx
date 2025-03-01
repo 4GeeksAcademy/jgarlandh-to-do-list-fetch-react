@@ -94,6 +94,7 @@ const Task = () => {
                     </li>
                 ))}
             </ul>
+            <p>Pending Tasks: {lista.length}</p>
         </>
     )
 };

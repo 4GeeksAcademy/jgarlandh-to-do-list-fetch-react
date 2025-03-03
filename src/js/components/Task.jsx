@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-
-
+import Button from 'react-bootstrap/Button';
+import ListGroup from 'react-bootstrap/ListGroup';
+import Alert from 'react-bootstrap/Alert';
 
 const Task = () => {
 
@@ -84,17 +85,21 @@ const Task = () => {
     return (
         <>
             <h1>To Do List</h1>
-            <input value={task} onChange={(e) => setTask(e.target.value)} type="text" /><br />
-            <button onClick={(e) => addTask(e)}>Agregar Tarea</button>
-            <ul>
+            <div className="container-md">
+            <input className="rounded-pill mb-2" value={task} onChange={(e) => setTask(e.target.value)} type="text" /><br />
+            <Button className="mb-2" variant="success" onClick={(e) => addTask(e)}>Agregar Tarea</Button>
+            <ListGroup as="ol" numbered>
                 {lista.map((tarea, index) => (
-                    <li key={index}>
+                    <ListGroup.Item as="li" className="mb-2" key={index}>
                         {tarea.label}
-                        <button onClick={() => deleteTask(tarea.id)}><i className="fa-fa-trash">x</i></button>
-                    </li>
+                        <Button variant="secondary" onClick={() => deleteTask(tarea.id)}><i className="fa-solid fa-trash mb-2 fs-6"></i></Button>
+                    </ListGroup.Item>
                 ))}
-            </ul>
-            <p>Pending Tasks: {lista.length}</p>
+            </ListGroup>
+            <Alert variant="warning">
+                <Alert.Heading>Pending Tasks: {lista.length}</Alert.Heading>
+            </Alert>
+            </div>
         </>
     )
 };
